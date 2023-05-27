@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class SeatingPlanCreator {
+public class test1 {
     private static int readInteger() {
         Scanner scanner = new Scanner(System.in); {
             return scanner.nextInt();
@@ -67,7 +67,7 @@ public class SeatingPlanCreator {
                     boolean check = true;                   
                     while(check) {
                        
-                        if ( groupSizes.size() <= 2) {
+                        if ( groupSizes.size() < 2) {
                             check = false;
                           break;  
                         }
@@ -88,16 +88,7 @@ public class SeatingPlanCreator {
                         System.out.println(" removed " + groupSizes.get(i) + " and " + groupSizes.get(groupSizes.size()-1) + " and " + groupSizes.get(groupSizes.size()-1));                          
                         groupSizes.remove(i);
                         groupSizes.remove(groupSizes.size()-1); 
-                        groupSizes.remove(groupSizes.size()-1); 
-                        System.out.println(groupSizes);
-                        continue;                                                    
-                    }  
-                    else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2) == 6) {
-                        tableSize6Count += 1;                         
-                        System.out.println(" removed " + groupSizes.get(i) + " and " + groupSizes.get(groupSizes.size()-1) + " and " + groupSizes.get(groupSizes.size()-1));                          
-                        groupSizes.remove(i);
-                        groupSizes.remove(groupSizes.size()-1); 
-                        groupSizes.remove(groupSizes.size()-1); 
+                        groupSizes.remove(groupSizes.size()-2); 
                         System.out.println(groupSizes);
                         continue;                                                    
                     }  
@@ -151,7 +142,7 @@ public class SeatingPlanCreator {
                     }                      
                     
                i = 0;
-                while (groupSizes.size() > 0) {        
+                while (groupSizes.size() > i) {        
                  if (groupSizes.size() >=2 ) {      
                 if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)  == 8) {
                     tableSize8Count += 1; 
@@ -166,41 +157,6 @@ public class SeatingPlanCreator {
                     tableSize8Count += 1;
                     emptySeats +=1;                       
                 } 
-                else if ((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 6) {
-                    System.out.println(" removed " + groupSizes.get(i) + " and " + groupSizes.get(groupSizes.size()-1));
-                    groupSizes.remove(i);
-                    groupSizes.remove(groupSizes.size()-1); 
-                    tableSize6Count += 1;                                        
-                } 
-                else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 5) {
-                    System.out.println(" removed " + groupSizes.get(i) + " and " + groupSizes.get(groupSizes.size()-1));                            
-                        groupSizes.remove(i);
-                        groupSizes.remove(groupSizes.size()-1); 
-                        tableSize6Count += 1; 
-                        emptySeats +=1; 
-                        System.out.println(groupSizes); 
-                        continue;                    
-                    }  
-                    else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 4) {
-                        System.out.println(" removed " + groupSizes.get(i) + " and " + groupSizes.get(groupSizes.size()-1));                            
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize6Count += 1; 
-                            emptySeats +=2; 
-                            System.out.println(groupSizes); 
-                            continue;                    
-                        } 
-                        else if (groupSizes.get(i) == 5) {                    
-                            tableSize6Count += 1; 
-                            System.out.println(" removed " + groupSizes.get(i));
-                            groupSizes.remove(i);                   
-                            emptySeats +=1;
-                        }  
-                        else if (groupSizes.get(i) == 6 ) {
-                            tableSize6Count += 1; 
-                            System.out.println(" removed " + groupSizes.get(i));
-                            groupSizes.remove(i);                                                     
-                        }  
                else {
                }                
             }
@@ -212,29 +168,13 @@ public class SeatingPlanCreator {
                         groupSizes.remove(i);                   
                         emptySeats +=1;
                     }  
-                    else if (groupSizes.get(i) == 6 ) {
-                        tableSize6Count += 1; 
-                        System.out.println(" removed " + groupSizes.get(i));
-                        groupSizes.remove(i);                                                     
-                    }  
                     else if (groupSizes.get(i) == 4) {
                         tableSize6Count += 1; 
                         emptySeats +=2;
                         System.out.println(" removed " + groupSizes.get(i));
                         groupSizes.remove(i);                     
                     }                        
-                    else if (groupSizes.get(i) == 3 ) {
-                        tableSize6Count += 1; 
-                        emptySeats +=3;
-                        System.out.println(" removed " + groupSizes.get(i));
-                        groupSizes.remove(i);                                                     
-                    }     
-                    else if (groupSizes.get(i) == 2 ) {
-                        tableSize6Count += 1; 
-                        emptySeats +=4;
-                        System.out.println(" removed " + groupSizes.get(i));
-                        groupSizes.remove(i);                                                     
-                    }            
+                                  
                 else { }   
                 }                     
             }   
@@ -257,4 +197,3 @@ public class SeatingPlanCreator {
     }
     
 }
-

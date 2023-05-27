@@ -1,4 +1,3 @@
-package Assignment;
 import java.util.*;
 
 public class SeatingPlan {
@@ -9,9 +8,9 @@ public class SeatingPlan {
         List<Integer> groupSizes = new ArrayList<>();
     
         int choice;
-      //  boolean seatingPlanCreated = false; // Keep track if seating plan has been created
+        boolean seatingPlanCreated = false; // Keep track if seating plan has been created
         do {
-            System.out.println("Menu:");
+            System.out.println("Seating Plan Menu:");
             System.out.println("1. Enter the number of groups including the group size that are attending an event");
             System.out.println("2. Create seating plan");
             System.out.println("3. Exit");
@@ -21,12 +20,10 @@ public class SeatingPlan {
             switch (choice) {
                 case 1:
                     groupSizes = enterGroupSizes(scanner);
-                    seatingPlanCreated = false; // Reset seating plan flag
                     break;
                 case 2:
                     if (!groupSizes.isEmpty()) { // Check if groups have been entered
                         createSeatingPlan(groupSizes);
-                        seatingPlanCreated = true; // Set seating plan flag
                     } else {
                         System.out.println("Please enter the groups first.");
                     }
