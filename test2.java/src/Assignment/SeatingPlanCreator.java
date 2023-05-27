@@ -230,11 +230,19 @@ public class SeatingPlanCreator {
                         groupSizes.remove(i);                                                     
                     }     
                     else if (groupSizes.get(i) == 2 ) {
+                        if (tableSize6Count > 0) { 
+                            tableSize8Count +=1;
+                            tableSize6Count -=1;
+                            groupSizes.remove(i); 
+                            break;
+                        }
+                        else {
                         tableSize6Count += 1; 
                         emptySeats +=4;
                         System.out.println(" removed " + groupSizes.get(i));
                         groupSizes.remove(i);                                                     
-                    }            
+                    }        
+                }    
                 else { }   
                 }                     
             }   
