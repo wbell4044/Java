@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class SeatingPlanCreator {
     private static int readInteger() {
         Scanner scanner = new Scanner(System.in); {
-            return scanner.nextInt();
+                        return scanner.nextInt();
         }
     }
 
@@ -263,6 +263,5 @@ public class SeatingPlanCreator {
             }
         }
     }
-    
 }
 
