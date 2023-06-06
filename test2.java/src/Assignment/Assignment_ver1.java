@@ -1,13 +1,12 @@
 package Assignment;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
     public class Assignment_ver1 {    
     public static void main(String[] args) {
         int totalPeople = 0;                            // Defining the variables.
         int totalGroups = 0;
-        List<Integer> groupSizes = new ArrayList<>();    // Defining the Array List to to place every group size.    
+        ArrayList<Integer> groupSizes = new ArrayList<>();    // Defining the Array List to to place every group size.    
         int tableSize6Count = 0; // Defining the table size 6.
         int tableSize8Count = 0; // Definig the table size 8. 
         int emptySeats = 0 ; 
@@ -34,24 +33,37 @@ import java.util.List;
                         DisplayMenu.groupOverload();         // if wrong number of groups entered will display error mesage in screen.          
                        }     
                     while (groupSize > 6 || groupSize < 2);    // While Loop runs untill all group sizes entered correctly between 2 to 6 people.          
-                    groupSizes.add(groupSize);                 // If group size entered correctly store it in Array 
+                    groupSizes.add(groupSize);                 // If group size entered correctly add and store it in Array 
                     totalPeople += groupSize;                  // Increasing total people count with every seccesfull entry by adding them to total people.
                 }
             } 
                 else if (choiceMenu == 2) {            // if option 2 chosen from menu         
-                if (totalPeople == 0)                 // checking if totap people is equal to 0 or not,
-                    DisplayMenu.entergroupagain();     // Displaying the error mesage  to enter groups again                
+                if (totalPeople == 0)                  // checking if totap people is equal to 0 or not,
+                    DisplayMenu.entergroupagain();     // Displaying the error mesage  to enter groups again                            
                     else if (totalPeople > 56)          // Checking if total people more than 56, because its our maximum.
                     DisplayMenu.toomanypeople();       // Displaying error mesage if total people exceeds 56 people.         
                     else if (totalPeople < 2)           // checking if total people less than 2
-                    DisplayMenu.insufficientPeople();   // Displaying error mesage if total people less than 2.               
-                    else {}                    
+                    DisplayMenu.insufficientPeople();   // Displaying error mesage if total people less than 2.                                         
                     
                     Collections.sort(groupSizes, Collections.reverseOrder()); // Sorting the Array and reversing it from big to small numbers                    
                     int i =0; 
-                    boolean check = true;
+                    boolean check = true;    
                     
-                     
+                    while(check) {
+                        if(groupSizes.size() <= 3) {
+                            check = false;
+                        }
+                         else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2) + groupSizes.get(groupSizes.size()-3) == 8) { 
+                            tableSize8Count += 1;                            
+                            groupSizes.remove(i);
+                            groupSizes.remove(groupSizes.size()-1);
+                            groupSizes.remove(groupSizes.size()-1); 
+                            groupSizes.remove(groupSizes.size()-1);
+                        }
+                        else 
+                            check = false;                            
+                    }
+                    check = true ;                    
 
                 while(check) {
                        
@@ -77,6 +89,14 @@ import java.util.List;
                             groupSizes.remove(groupSizes.size()-1); 
                             groupSizes.remove(groupSizes.size()-1);                                                                          
                         }  
+                       else 
+                            check = false ;
+
+                        check = true ;                            
+                 while(check)
+                        if ((groupSizes.size() - 1) <= i) 
+                            check = false; 
+                       
                         else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)  == 8) {
                             tableSize8Count += 1;                                                   
                             groupSizes.remove(i);
@@ -87,8 +107,7 @@ import java.util.List;
                             tableSize8Count += 1; 
                             emptySeats +=1;                                                
                             groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            System.out.println(groupSizes);                                                            
+                            groupSizes.remove(groupSizes.size()-1);                                                                                        
                         }  
                         else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 6) {                                                  
                             groupSizes.remove(i);
@@ -104,58 +123,12 @@ import java.util.List;
                             groupSizes.remove(i);                   
                             emptySeats +=1;
                         }                   
-                        else if (groupSizes.size() == 1 || groupSizes.size() == 0 ) 
-                            check = false;                           
-                        
                         else   
                             i +=1;                                                                      
                     }                      
-                    
-               i = 0;
-                while (groupSizes.size() > 0) {        
-                     if (groupSizes.size() >=2 ) {      
-                        if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)  == 8) {
-                             tableSize8Count += 1;                      
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1);   
-                        }
-                        else if ((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 7) {                    
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize8Count += 1;
-                            emptySeats +=1;                       
-                        } 
-                       else if ((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 6) {                      
-                             groupSizes.remove(i);
-                             groupSizes.remove(groupSizes.size()-1); 
-                             tableSize6Count += 1;                                        
-                        } 
-                        else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 5) {                                             
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize6Count += 1; 
-                             emptySeats +=1;                                             
-                        }  
-                         else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 4) {                                             
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize6Count += 1; 
-                            emptySeats +=2;                                               
-                        } 
-                        else if (groupSizes.get(i) == 5) {                    
-                            tableSize6Count += 1;                    
-                            groupSizes.remove(i);                   
-                            emptySeats +=1;
-                        }  
-                        else if (groupSizes.get(i) == 6 ) {
-                            tableSize6Count += 1;                       
-                            groupSizes.remove(i);                                                     
-                        }  
-                        else {}
-                             
-                    }
-                    else {        
-                  
+                         i = 0;
+                while (groupSizes.size() > 0) {       
+                                                                
                           if (groupSizes.get(i) == 5) {                    
                         tableSize6Count += 1;                  
                         groupSizes.remove(i);                   
@@ -187,16 +160,14 @@ import java.util.List;
                                      groupSizes.remove(i);                                                     
                                       }        
                         }    
-                        else { }   
-                    }                     
+                        else {}                                          
                 }   
                 DisplayMenu.seatimgplan(tableSize6Count,tableSize8Count,emptySeats, totalPeople);
                 
             } else if (choiceMenu == 3) {
                 DisplayMenu.exit();                
                 break;
-            }
-            
+            }            
             else {
                 DisplayMenu.invalidentry();
 

@@ -3,22 +3,27 @@ import javax.swing.JOptionPane;
 
 public class DisplayMenu {
        public static  int displayMenu() {  
-         String choiceString = JOptionPane.showInputDialog("1. Enter the number of groups including the group size that are attending an event\n" +
+         String menuOption = JOptionPane.showInputDialog("1. Enter the number of groups including the group size that are attending an event\n" +
          "2. Create seating plan \n " +
          "3. Exit\n " +
          " Please Enter Your Choice : \n");
-         int choiceMenu = Integer.parseInt(choiceString);             
-         return choiceMenu;         
+         int optionMenu = Integer.parseInt(menuOption);             
+         return optionMenu;         
     }
     public static int readgroupNumber() {
-        int choiceGroup = 0;       
+        int numberOfGroups = 0;  
+        while(!(numberOfGroups > 0 && numberOfGroups < 28)) {     
         String reading = JOptionPane.showInputDialog("Enter the total number of groups attending the event : ");
         try {
-        choiceGroup = Integer.parseInt(reading);   
+        numberOfGroups = Integer.parseInt(reading);   
         } catch(Exception e) {
             errorhandling();
+        }  
+        if(numberOfGroups > 28 || numberOfGroups < 1) {
+            JOptionPane.showMessageDialog(null," Minimum Groups can be 1 and Maximum 28. Please enter a value between 1 to 28.... ", " Wrong Entry for number of Groups Error..", JOptionPane.ERROR_MESSAGE);
         }
-    return choiceGroup;   
+    }
+    return numberOfGroups;
     }    
     public static int readgroups(int i) {        
         int groupsize = 0;
