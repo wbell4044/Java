@@ -2,7 +2,7 @@ package Assignment;
 import java.util.ArrayList;
 import java.util.Collections;
 
-    public class Assignment_ver1 {    
+    public class nadir {    
     public static void main(String[] args) {
         int totalPeople = 0;                            // Defining the variables.
         int totalGroups = 0;
@@ -60,36 +60,6 @@ import java.util.Collections;
                             groupSizes.remove(groupSizes.size()-1); 
                             groupSizes.remove(groupSizes.size()-1);
                         }
-                        else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2)  == 8) {
-                            tableSize8Count += 1;                            
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1);
-                            groupSizes.remove(groupSizes.size()-1);                                                                                
-                        }
-                        else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2) == 7) {
-                            tableSize8Count += 1; 
-                            emptySeats +=1;                                                 
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            groupSizes.remove(groupSizes.size()-1);                                                                      
-                       }                          
-                        else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)  == 8) {
-                            tableSize8Count += 1;                                                   
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1);                               
-                        }
-                            
-                        else if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) == 7) {
-                            tableSize8Count += 1; 
-                            emptySeats +=1;                                                
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1);                                                                                        
-                        }  
-                        else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 6) {                                                  
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize6Count += 1;                                            
-                        } 
                         else 
                             check = false;                            
                     }
@@ -143,19 +113,7 @@ import java.util.Collections;
                             groupSizes.remove(i);
                             groupSizes.remove(groupSizes.size()-1); 
                             tableSize6Count += 1;                                            
-                        }    
-                        else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 5) {                                                  
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize6Count += 1;  
-                            emptySeats +=1;                                         
-                        } 
-                        else if((groupSizes.get(i) + groupSizes.get(groupSizes.size()-1)) == 4) {                                                  
-                            groupSizes.remove(i);
-                            groupSizes.remove(groupSizes.size()-1); 
-                            tableSize6Count += 1;
-                            emptySeats +=2;                                           
-                        } 
+                        }     
                         else if (groupSizes.get(i) == 6 ) {
                             tableSize6Count += 1;                        
                             groupSizes.remove(i);                                                     

@@ -1,8 +1,9 @@
 package Assignment;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JOptionPane;
 
-    public class Assignment_ver1 {    
+public class AssignmentVer2 {
     public static void main(String[] args) {
         int totalPeople = 0;                            // Defining the variables.
         int totalGroups = 0;
@@ -13,12 +14,12 @@ import java.util.Collections;
         while (true) {  
             int choiceMenu = 0;
             try {
-            choiceMenu = DisplayMenu.displayMenu();    // Displaying the Main Menu to chose 1. Enter groups, 2. Enter group sizes 3. Exit  and reading the value for below if statement.      
+            choiceMenu = menuDisplay();    // Displaying the Main Menu to chose 1. Enter groups, 2. Enter group sizes 3. Exit  and reading the value for below if statement.      
              } catch(Exception e) {}            
             
             if (choiceMenu == 1) {   
                 totalGroups = 0;                         
-                totalGroups = DisplayMenu.readgroupNumber();   // Entering the number of groups.                 
+                totalGroups = readgroupNumber();   // Entering the number of groups.                 
                 int groupSize =0;
                 totalPeople = 0;  
                 groupSizes.clear(); 
@@ -28,9 +29,9 @@ import java.util.Collections;
             
                 for (int i = 0; i < totalGroups; i++) {      // For Loop to enter every group size 
                     do {                      
-                    groupSize = DisplayMenu.readgroups(i);   // Reading each group number and returning that spesific group number to add them in Array.                                        
+                    groupSize = readgroups(i);   // Reading each group number and returning that spesific group number to add them in Array.                                        
                     if(groupSize > 6 || groupSize < 2)      // Chechking if groups are bigger than 6 people of less than 2 people.
-                        DisplayMenu.groupOverload();         // if wrong number of groups entered will display error mesage in screen.          
+                        groupOverload();         // if wrong number of groups entered will display error mesage in screen.          
                        }     
                     while (groupSize > 6 || groupSize < 2);    // While Loop runs untill all group sizes entered correctly between 2 to 6 people.          
                     groupSizes.add(groupSize);                 // If group size entered correctly add and store it in Array 
@@ -39,11 +40,11 @@ import java.util.Collections;
             } 
                 else if (choiceMenu == 2) {            // if option 2 chosen from menu         
                 if (totalPeople == 0)                  // checking if totap people is equal to 0 or not,
-                    DisplayMenu.entergroupagain();     // Displaying the error mesage  to enter groups again                            
+                    entergroupagain();     // Displaying the error mesage  to enter groups again                            
                     else if (totalPeople > 56)          // Checking if total people more than 56, because its our maximum.
-                    DisplayMenu.toomanypeople();       // Displaying error mesage if total people exceeds 56 people.         
+                    toomanypeople();       // Displaying error mesage if total people exceeds 56 people.         
                     else if (totalPeople < 2)           // checking if total people less than 2
-                    DisplayMenu.insufficientPeople();   // Displaying error mesage if total people less than 2.                                         
+                    insufficientPeople();   // Displaying error mesage if total people less than 2.                                         
                     
                     Collections.sort(groupSizes, Collections.reverseOrder()); // Sorting the Array and reversing it from big to small numbers                    
                     int i =0; 
@@ -204,16 +205,90 @@ import java.util.Collections;
                         }    
                         else {}                                          
                 }   
-                DisplayMenu.seatimgplan(tableSize6Count,tableSize8Count,emptySeats, totalPeople);
+               seatimgplan(tableSize6Count,tableSize8Count,emptySeats, totalPeople);
                 
             } else if (choiceMenu == 3) {
-                DisplayMenu.exit();                
+                exit();                
                 break;
             }            
             else {
-                DisplayMenu.invalidentry();
+                invalidentry();
 
             }
         }    
     }
+
+    static int menuDisplay() {  
+        String menuOption = JOptionPane.showInputDialog("1. Enter the number of groups including the group size that are attending an event\n" +
+        "2. Create seating plan \n " +
+        "3. Exit\n " +
+        " Please Enter Your Choice : \n");
+        int optionMenu = Integer.parseInt(menuOption);             
+        return optionMenu;         
+   }
+   static int readgroupNumber() {
+       int numberOfGroups = 0;  
+       while(!(numberOfGroups > 0 && numberOfGroups < 28)) {     
+       String reading = JOptionPane.showInputDialog("Enter the total number of groups attending the event : ");
+       try {
+       numberOfGroups = Integer.parseInt(reading);   
+       } catch(Exception e) {
+           errorhandling();
+       }  
+       if(numberOfGroups > 28 || numberOfGroups < 1) {
+           JOptionPane.showMessageDialog(null," Minimum Groups can be 1 and Maximum 28. Please enter a value between 1 to 28.... ", " Wrong Entry for number of Groups Error..", JOptionPane.ERROR_MESSAGE);
+       }
+   }
+   return numberOfGroups;
+   }    
+   static int readgroups(int i) {        
+       int groupsize = 0;
+       String reading = JOptionPane.showInputDialog("Enter the size of group " + (i + 1) + ": ");
+       try {
+       groupsize = Integer.parseInt(reading);
+       } catch(Exception e) {
+           errorhandling();
+       }
+   return groupsize;
+   }
+   static void groupOverload() {
+       JOptionPane.showMessageDialog(null," Groups can be between 2 to 6 people. Please enter a value between 2 to 6.... ", " Wrong Entry for Group size Error..", JOptionPane.ERROR_MESSAGE);
+   }
+
+   static void entergroupagain() {
+       JOptionPane.showMessageDialog(null," No groups entered. Please enter groups first. . ", " No Group Selected Error..", JOptionPane.ERROR_MESSAGE);
+   }
+
+   static void toomanypeople() {
+       JOptionPane.showMessageDialog(null," Total number of people exceeds maximum capacity... \nPlease Enter Total number of Groups and group sizes again... ", " Too many People Selected Error..", JOptionPane.ERROR_MESSAGE);
+   }
+
+   static void insufficientPeople() {
+       JOptionPane.showMessageDialog(null," insufficient number of people. Please enter more groups... ", " Insufficent People Selected Error..", JOptionPane.ERROR_MESSAGE);
+   }
+
+   static void exit() {
+       JOptionPane.showMessageDialog(null," Thanks you For Using the Program .....BYE..... ", " ..Exitting the Program..", JOptionPane.PLAIN_MESSAGE);
+   }
+
+   static void invalidentry() {
+       JOptionPane.showMessageDialog(null," Invalid choice... Please choose a valid option... ", " ..Invalid Entry Error..", JOptionPane.ERROR_MESSAGE);
+   }
+
+   static void seatimgplan(int tableSize6Count, int tableSize8Count, int emptySeats, int totalPeople) {       
+       JOptionPane.showMessageDialog(null," Table Size 6 : " + tableSize6Count + " Tables..\n" +
+       " Table Size 8 : " + tableSize8Count + " Tables \n" + " Total Empty Seats : " + emptySeats + ".\n" +
+       " Total People : " + totalPeople + ".\n", " ..Seating Plan Display..", JOptionPane.PLAIN_MESSAGE);        
+   }
+   static void errorhandling() {
+       JOptionPane.showMessageDialog(null,"  !!!!!! ..Please Enter only Integer... !!!!! ", " ..String Entry Error..", JOptionPane.ERROR_MESSAGE);
+   }
 }
+
+
+
+
+
+
+    
+
