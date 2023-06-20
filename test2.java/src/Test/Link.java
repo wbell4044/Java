@@ -76,9 +76,10 @@ class LinkList {
     public Link removeLink() {
         Link currentLink = firstLink;
         Link previousLink = firstLink;        
-        while(currentLink.bookName != bookName) {
+        //while(currentLink.bookName != bookName) {
 
-        }
+        //}
+        return previousLink;
     }
 
 }
