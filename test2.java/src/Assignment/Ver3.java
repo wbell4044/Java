@@ -21,7 +21,7 @@ public class Ver3 {
             
             if (menuSelection == 1) {   // First option for menuselection
                 totalGroups = 0;           // reseting total groups              
-                totalGroups = readgroupNumber();   // Entering the number of groups.                 
+                totalGroups = readGroupNumber();   // Entering the number of groups.                 
                 int groupSize =0;                    // reseting groupsize to enter new groups again
                 totalPeople = 0;                     // reseting total people just incase if the user enter some values before and enter again  
                 groupSizes.clear(); 
@@ -31,9 +31,9 @@ public class Ver3 {
             
                 for (int i = 0; i < totalGroups; i++) {      // For Loop to enter every group size 
                     do {                      
-                    groupSize = readgroups(i);   // Reading each group number and returning that spesific group number to add them in Array.                                        
+                    groupSize = readGroups(i);   // Reading each group number and returning that spesific group number to add them in Array.                                        
                     if(groupSize > 6 || groupSize < 2)      // Chechking if groups are bigger than 6 people of less than 2 people.
-                        groupOverload();         // if wrong number of groups entered will display error mesage in screen.          
+                        groupOverLoad();         // if wrong number of groups entered will display error mesage in screen.          
                        }     
                     while (groupSize > 6 || groupSize < 2);    // While Loop runs untill all group sizes entered correctly between 2 to 6 people.          
                     groupSizes.add(groupSize);                 // If group size entered correctly add and store it in Array 
@@ -42,9 +42,9 @@ public class Ver3 {
             } 
                 else if (menuSelection == 2) {            // if option 2 chosen from menu         
                     if (totalPeople == 0)                  // checking if totap people is equal to 0 or not,
-                        entergroupagain();     // Displaying the error mesage  to enter groups again                            
+                        enterGroupAgain();     // Displaying the error mesage  to enter groups again                            
                     else if (totalPeople > 56)          // Checking if total people more than 56, because its our maximum.
-                        toomanypeople();       // Displaying error mesage if total people exceeds 56 people.         
+                        tooManyPeople();       // Displaying error mesage if total people exceeds 56 people.         
                     else if (totalPeople < 2)           // checking if total people less than 2
                         insufficientPeople();   // Displaying error mesage if total people less than 2.                                         
                    
@@ -57,14 +57,14 @@ public class Ver3 {
                      twoGroups();             // running twogroups  method    to sit any two groups in the same table   
                      oneGroup();              // running onegroup  method     to see if any groups left without seating in a table and sitting then in a table
         }    
-            seatimgplan(tableSize6Count,tableSize8Count,emptySeats, totalPeople);     // displaying the number of table 6 and 8, empty seats and total people        
+            seatimgPlan(tableSize6Count,tableSize8Count,emptySeats, totalPeople);     // displaying the number of table 6 and 8, empty seats and total people        
             } 
             else if (menuSelection == 3) {     //  menuselection option 3 is exiting the program
                 exit();                        // running the  method   to display exit mesage on the screen and end the program
                 break;                         // exiting the infinite while loop
             }            
             else {                  // if anything else entered by user will display errror mesage and continue while loop
-                invalidentry();     // runnig the invalidentry method to display error mesage
+                invalidEntry();     // runnig the invalidentry method to display error mesage
             }
         }    
     }
@@ -201,14 +201,14 @@ public class Ver3 {
         int optionMenu = Integer.parseInt(menuOption);     // converting the entered string into integer        
         return optionMenu;                                 // returning the selection to main program 
    }
-   static int readgroupNumber() {                        // entering the groups number between 1 to 28. 
+   static int readGroupNumber() {                        // entering the groups number between 1 to 28. 
        int numberOfGroups = 0;  
        while(!(numberOfGroups > 0 && numberOfGroups < 28)) {     // loop until user enter a value between 1 and 28
        String reading = JOptionPane.showInputDialog("Enter the total number of groups attending the event : ");   // reading the user input as string
        try {                                              // catching the any wrong input type 
        numberOfGroups = Integer.parseInt(reading);        // converting the entered string into integer
        } catch(Exception e) {                            // catching if the user enter any invalid entry other than numbers 
-           errorhandling();                              // running the errorhandling method to display errror mesage and returning to enter groups number again
+           errorHandling();                              // running the errorhandling method to display errror mesage and returning to enter groups number again
        }  
        if(numberOfGroups > 28 || numberOfGroups < 1) {    // displaying different error mesage if user enter a number which is out of the range
            JOptionPane.showMessageDialog(null," Minimum Groups can be 1 and Maximum 28. Please enter a value between 1 to 28.... ", " Wrong Entry for number of Groups Error..", JOptionPane.ERROR_MESSAGE);
@@ -216,25 +216,25 @@ public class Ver3 {
    }
    return numberOfGroups;                          // return number of groups as integer
    }    
-   static int readgroups(int i) {                  // readgroup medhod will read every entry and store them in an array
-       int groupsize = 0;
+   static int readGroups(int i) {                  // readgroup medhod will read every entry and store them in an array
+       int groupSize = 0;
        String reading = JOptionPane.showInputDialog("Enter the size of group " + (i + 1) + ": ");    // entering the group sizes as string value
        try {
-       groupsize = Integer.parseInt(reading);       // converting the entered string into integer     
+       groupSize = Integer.parseInt(reading);       // converting the entered string into integer     
        } catch(Exception e) {                         // catching if the user enter any invalid entry other than numbers 
-           errorhandling();                           // Diplaying the error mesage to enter numbers only
+           errorHandling();                           // Diplaying the error mesage to enter numbers only
        }
-   return groupsize;                                   // returning the groupsize reading as integer 
+   return groupSize;                                   // returning the groupsize reading as integer 
    }
-   static void groupOverload() {                   //  Error handling mesage will display when and where needed.
+   static void groupOverLoad() {                   //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Groups can be between 2 to 6 people. Please enter a value between 2 to 6.... ", " Wrong Entry for Group size Error..", JOptionPane.ERROR_MESSAGE);
    }
 
-   static void entergroupagain() {                 //  Error handling mesage will display when and where needed.
+   static void enterGroupAgain() {                 //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," No groups entered. Please enter groups first. . ", " No Group Selected Error..", JOptionPane.ERROR_MESSAGE);
    }
 
-   static void toomanypeople() {                    //  Error handling mesage will display when and where needed.
+   static void tooManyPeople() {                    //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Total number of people exceeds maximum capacity... \nPlease Enter Total number of Groups and group sizes again... ", " Too many People Selected Error..", JOptionPane.ERROR_MESSAGE);
    }
 
@@ -246,16 +246,16 @@ public class Ver3 {
        JOptionPane.showMessageDialog(null," Thanks you For Using the Program .....BYE..... ", " ..Exitting the Program..", JOptionPane.PLAIN_MESSAGE);
    }
 
-   static void invalidentry() {                         //  Error handling mesage will display when and where needed.
+   static void invalidEntry() {                         //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Invalid choice... Please choose a valid option... ", " ..Invalid Entry Error..", JOptionPane.ERROR_MESSAGE);
    }
 
-   static void seatimgplan(int tableSize6Count, int tableSize8Count, int emptySeats, int totalPeople) {                     // Displsying the seating plan for tables  for 6 and 8 people , empty seats and total people.
+   static void seatimgPlan(int tableSize6Count, int tableSize8Count, int emptySeats, int totalPeople) {                     // Displsying the seating plan for tables  for 6 and 8 people , empty seats and total people.
        JOptionPane.showMessageDialog(null," Table Size 6 : " + tableSize6Count + " Tables..\n" +            
        " Table Size 8 : " + tableSize8Count + " Tables \n" + " Total Empty Seats : " + emptySeats + ".\n" +
        " Total People : " + totalPeople + ".\n", " ..Seating Plan Display..", JOptionPane.PLAIN_MESSAGE);        
    }
-   static void errorhandling() {                   //  Error handling mesage will display when and where needed.
+   static void errorHandling() {                   //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null,"  !!!!!! ..Please Enter only Integer... !!!!! ", " ..String Entry Error..", JOptionPane.ERROR_MESSAGE);
    }
 }
