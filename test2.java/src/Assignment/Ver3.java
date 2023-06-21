@@ -9,7 +9,7 @@ public class Ver3 {
     static int tableSize8Count = 0; // Definig the table size 8. 
     static boolean check = true;    // Setting boolean check to true will use it to exit while loops.
     static int emptySeats = 0;      // Defining the empty seats. 
-    public static void main(String[] args) {                  
+    public static void main(String[] args) {                 
         int totalPeople = 0;                            // Defining the variables.
         int totalGroups = 0; 
         int menuSelection = 0;        
@@ -44,14 +44,11 @@ public class Ver3 {
                     if (totalPeople == 0)                  // checking if totap people is equal to 0 or not,
                         enterGroupAgain();     // Displaying the error mesage  to enter groups again                            
                     else if (totalPeople > 56)          // Checking if total people more than 56, because its our maximum.
-                        tooManyPeople();       // Displaying error mesage if total people exceeds 56 people.         
-                    else if (totalPeople < 2)           // checking if total people less than 2
-                        insufficientPeople();   // Displaying error mesage if total people less than 2.                                         
-                   
+                        tooManyPeople();       // Displaying error mesage if total people exceeds 56 people.                                                              
+                   else {}
                     Collections.sort(groupSizes, Collections.reverseOrder()); // Sorting the Array and reversing it from big to small numbers                                        
                     
-                while(groupSizes.size() > 0) {  // starting a loop while Array size bigger than 0, we will remove the processed data from the Array until it's empty
-                     check = true ;          // setting the boolean true      
+                while(groupSizes.size() > 0) {  // starting a loop while Array size bigger than 0, we will remove the processed data from the Array until it's empty                          
                      fourGroups();            // running fourgrops method     to check the extreeme condition like if all groupsizes are 2 people                      
                      threeGroups();           // running threegroups method   to check if we can seat 3 groups in a table or not.  
                      twoGroups();             // running twogroups  method    to sit any two groups in the same table   
@@ -62,13 +59,15 @@ public class Ver3 {
             else if (menuSelection == 3) {     //  menuselection option 3 is exiting the program
                 exit();                        // running the  method   to display exit mesage on the screen and end the program
                 break;                         // exiting the infinite while loop
-            }            
+            }     
+            else if (menuSelection == 999) {     //  menuselection option 3 is exiting the program
+                displaydata(totalPeople, totalGroups);
+            }       
             else {                  // if anything else entered by user will display errror mesage and continue while loop
                 invalidEntry();     // runnig the invalidentry method to display error mesage
             }
         }    
     }
-
     private static void oneGroup() {      // onegroup method runs after methods to find a table any groups could not find place 
         while (groupSizes.size() > 0 ) {
                                                                           
@@ -106,7 +105,6 @@ public class Ver3 {
                 else { } 
         } 
     }
-
     private static void twoGroups() {          // sitting any two groups together considering minimum empty seats.
         int i = 0 ;
         while(groupSizes.size() > 1 && i < (groupSizes.size() - 1)) {         // we need minimum 2 groups of people to run this option, it will run while we still have more than 2 groups not seated and i will increase but we dont want it to be equal or bigger than remaining arraysize  
@@ -147,10 +145,10 @@ public class Ver3 {
                 i += 1 ;         // increase the i to check the other groups can be seated or not                  
             }
         }        
-    }
-    
+    }    
     private static void threeGroups()  {               // checking if we can seat any 3 groups together
-        while(groupSizes.size() > 2 && check) {        // should be at least 3 groups or more and if we can not find any groups suitable we need to break out from the loop by setting check to false.
+        int i =0;
+        while(groupSizes.size() > 2 && i <= (groupSizes.size()-3)) {        // should be at least 3 groups or more and if we can not find any groups suitable we need to break out from the loop by setting check to false.
             if (groupSizes.get(0) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2)  == 8) {   // chechking if we can sit 3 groups together in a table for 8
                 tableSize8Count += 1;                                                                                           // increase number of table for 8 people size          
                 groupSizes.remove(0);                                                                                     // after seating the group removing it from from the array 
@@ -170,29 +168,24 @@ public class Ver3 {
                 groupSizes.remove(groupSizes.size()-1);                                                                             // after seating the group removing it from from the array    ( removing the last array element)
                 groupSizes.remove(groupSizes.size()-1);                                                                             // after seating the group removing it from from the array    ( after removing the last element above line this one become last and remove this again)                                                             
             }  
-            else { 
-                check = false;   // setting check boolean to false to breakout from the loop
-            }
-        }
-        check = true ;    // after breaking out of the while loop we set the boolean true again because we it needs to be true for the next steps.
+            else 
+               i++;    // incrementing i to check the next item             
+        }       
     }
-
     private static void fourGroups() {     // checking extreeme condition only if everygroup is 2 people and numbe of groups 4 or more
-        while(groupSizes.size() > 3 && check) {    // checking if the array size. must be 4 or more and check should be true
-            if (groupSizes.get(0) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2) + groupSizes.get(groupSizes.size()-3) == 8) {   // checking if 4 groups can seat in a table or not
+       int i = 0;
+        while(groupSizes.size() > 3 && i <= (groupSizes.size()-4)) {    // checking if the array size. must be 4 or more and check should be true
+            if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2) + groupSizes.get(groupSizes.size()-3) == 8) {   // checking if 4 groups can seat in a table or not
                 tableSize8Count += 1;           // increase table for 8 by 1                 
-                groupSizes.remove(0);               // after seating the group removing it from from the array 
+                groupSizes.remove(i);               // after seating the group removing it from from the array 
                 groupSizes.remove(groupSizes.size()-1);   // after seating the group removing it from from the array 
                 groupSizes.remove(groupSizes.size()-1);    // after seating the group removing it from from the array   ( keep removing last element because when the program goes to next line it needs to remove the last again)
                 groupSizes.remove(groupSizes.size()-1);   // after seating the group removing it from from the array 
             }
-            else { 
-                check = false;   // setting boolean to false to break out from loop
-            }
-        }
-        check = true;   // setting the boolean to true again to use it next steps of the program
+            else 
+                i++;   // incrementing i to check the next item            
+        }       
     }
-
     static int menuDisplay() {           //  Display menu medhod to display the mein menu will return integer value
         String menuOption = JOptionPane.showInputDialog("1. Enter the number of groups and group sizes that are attending an event\n" +  // will display menu in the screen and require to enter menuselection option
         "2. Create seating plan \n " +
@@ -237,11 +230,7 @@ public class Ver3 {
    static void tooManyPeople() {                    //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Total number of people exceeds maximum capacity... \nPlease Enter Total number of Groups and group sizes again... ", " Too many People Selected Error..", JOptionPane.ERROR_MESSAGE);
    }
-
-   static void insufficientPeople() {               //  Error handling mesage will display when and where needed.
-       JOptionPane.showMessageDialog(null," insufficient number of people. Please enter more groups... ", " Insufficent People Selected Error..", JOptionPane.ERROR_MESSAGE);
-   }
-
+   
    static void exit() {                               //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Thanks you For Using the Program .....BYE..... ", " ..Exitting the Program..", JOptionPane.PLAIN_MESSAGE);
    }
@@ -257,5 +246,8 @@ public class Ver3 {
    }
    static void errorHandling() {                   //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null,"  !!!!!! ..Please Enter only Integer... !!!!! ", " ..String Entry Error..", JOptionPane.ERROR_MESSAGE);
+   }
+   public static void displaydata(int totalPeople, int totalGroups) {
+    JOptionPane.showMessageDialog(null," Total People : " + totalPeople + "\n Number Of Groups :  " + totalGroups + "\n Groupsizes : " + groupSizes ," ..Display Data..", JOptionPane.PLAIN_MESSAGE); 
    }
 }
