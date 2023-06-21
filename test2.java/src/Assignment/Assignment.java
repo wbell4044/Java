@@ -2,8 +2,7 @@ package Assignment;
 import java.util.ArrayList;
 import java.util.Collections;          // import the necessary java libraries
 import javax.swing.JOptionPane;
-
-public class Ver3 {
+public class Assignment {
     static ArrayList<Integer> groupSizes = new ArrayList<>();  // Defining the Array List to place every group size.
     static int tableSize6Count = 0; // Defining the table size 6.
     static int tableSize8Count = 0; // Definig the table size 8. 
@@ -222,23 +221,19 @@ public class Ver3 {
    static void groupOverLoad() {                   //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Groups can be between 2 to 6 people. Please enter a value between 2 to 6.... ", " Wrong Entry for Group size Error..", JOptionPane.ERROR_MESSAGE);
    }
-
    static void enterGroupAgain() {                 //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," No groups entered. Please enter groups first. . ", " No Group Selected Error..", JOptionPane.ERROR_MESSAGE);
    }
-
    static void tooManyPeople() {                    //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Total number of people exceeds maximum capacity... \nPlease Enter Total number of Groups and group sizes again... ", " Too many People Selected Error..", JOptionPane.ERROR_MESSAGE);
    }
-   
+  
    static void exit() {                               //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Thanks you For Using the Program .....BYE..... ", " ..Exitting the Program..", JOptionPane.PLAIN_MESSAGE);
    }
-
    static void invalidEntry() {                         //  Error handling mesage will display when and where needed.
        JOptionPane.showMessageDialog(null," Invalid choice... Please choose a valid option... ", " ..Invalid Entry Error..", JOptionPane.ERROR_MESSAGE);
    }
-
    static void seatimgPlan(int tableSize6Count, int tableSize8Count, int emptySeats, int totalPeople) {                     // Displsying the seating plan for tables  for 6 and 8 people , empty seats and total people.
        JOptionPane.showMessageDialog(null," Table Size 6 : " + tableSize6Count + " Tables..\n" +            
        " Table Size 8 : " + tableSize8Count + " Tables \n" + " Total Empty Seats : " + emptySeats + ".\n" +
