@@ -59,7 +59,7 @@ public class Assignment {
                 exit();                        // running the  method   to display exit mesage on the screen and end the program
                 break;                         // exiting the infinite while loop
             }     
-            else if (menuSelection == 999) {     //  menuselection option 3 is exiting the program
+            else if (menuSelection == 4) {     //  menuselection option 3 is exiting the program
                 displaydata(totalPeople, totalGroups);
             }       
             else {                  // if anything else entered by user will display errror mesage and continue while loop
@@ -173,7 +173,7 @@ public class Assignment {
     }
     private static void fourGroups() {     // checking extreeme condition only if everygroup is 2 people and numbe of groups 4 or more
        int i = 0;
-        while(groupSizes.size() > 3 && i <= (groupSizes.size()-4)) {    // checking if the array size. must be 4 or more and check should be true
+        while(groupSizes.size() > 3 && i < (groupSizes.size()-4)) {    // checking if the array size. must be 4 or more and check should be true
             if (groupSizes.get(i) + groupSizes.get(groupSizes.size()-1) + groupSizes.get(groupSizes.size()-2) + groupSizes.get(groupSizes.size()-3) == 8) {   // checking if 4 groups can seat in a table or not
                 tableSize8Count += 1;           // increase table for 8 by 1                 
                 groupSizes.remove(i);               // after seating the group removing it from from the array 
@@ -195,7 +195,7 @@ public class Assignment {
    }
    static int readGroupNumber() {                        // entering the groups number between 1 to 28. 
        int numberOfGroups = 0;  
-       while(!(numberOfGroups > 0 && numberOfGroups < 28)) {     // loop until user enter a value between 1 and 28
+       while(!(numberOfGroups > 0 && numberOfGroups < 28)) {    // loop until user enter a value between 1 and 28
        String reading = JOptionPane.showInputDialog("Enter the total number of groups attending the event : ");   // reading the user input as string
        try {                                              // catching the any wrong input type 
        numberOfGroups = Integer.parseInt(reading);        // converting the entered string into integer
